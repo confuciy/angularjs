@@ -266,7 +266,7 @@ __pycache__/
 **/Web.Debug.config
 **/Web.Release.config
 **/Web.config
-**/angularjs_project.csproj
+**/*.csproj*
 **/bin/
 **/obj/
 
