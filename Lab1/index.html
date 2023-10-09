@@ -13,11 +13,12 @@
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div ng-app="" style="padding: 50px;">
-        <p class="fs-1">Hello world</p>
-        <input type="text" placeholder="Your text here..." ng-model="HelloWorldText" class="btn-light btn-primary">
+    <div data-ng-app="" style="padding: 50px;">
+        <p class="fs-1">Lab 1</p>
+        <input type="text" placeholder="Your text here..." data-ng-model="yourText" class="btn-light">
         <br>
-        Repeat text: {{HelloWorldText}}
+        Repeated text: <span>{{yourText}}</span><br>
+        Repeated text [bind]: <span data-ng-bind="yourText">
     </div>
 </body>
 </html>
