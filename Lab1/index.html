@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <!--AngularJS-->
+    <script src="angular.js"></script> <!--Manual connection-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>--> <!--CDN-->
+    <!--<script src="Scripts/angular.min.js"></script>--> <!--NuGet-->
+    <!--Bootstrap-->
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div ng-app="" style="padding: 50px;">
+        <p class="fs-1">Hello world</p>
+        <input type="text" placeholder="Your text here..." ng-model="HelloWorldText" class="btn-light btn-primary">
+        <br>
+        Repeat text: {{HelloWorldText}}
+    </div>
+</body>
+</html>

@@ -260,10 +260,13 @@ paket-files/
 __pycache__/
 *.pyc
 
-angularjs_project/Content/
-angularjs_project/Scripts/
-angularjs_project/Properties/
-angularjs_project/Web.Debug.config
-angularjs_project/Web.Release.config
-angularjs_project/Web.config
-angularjs_project/angularjs_project.csproj
+**/Content/
+**/Scripts/
+**/Properties/
+**/Web.Debug.config
+**/Web.Release.config
+**/Web.config
+**/angularjs_project.csproj
+**/bin/
+**/obj/
+
