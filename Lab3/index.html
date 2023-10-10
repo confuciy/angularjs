@@ -14,7 +14,7 @@
         input.ng-invalid {
             outline: 2px solid red;
         }
-        input.ng-untouched {
+        input.ng-untouched, input.ng-pristine {
             outline: none;
         }
         input.ng-valid {
@@ -47,7 +47,11 @@
 
                 <br><br>
 
-                <div ng-show="personForm.inputFirstName.$valid && personForm.inputLastName.$valid" ng-bind-html="getLetter()"></div>
+                <div ng-show="personForm.inputFirstName.$valid && personForm.inputLastName.$valid" ng-bind-html="getLetterHTML()"></div>
+
+                <br><br>
+
+                <textarea ng-show="personForm.inputFirstName.$valid && personForm.inputLastName.$valid" ng-bind="getLetter()" cols="30" rows="3"></textarea>
 
             </form>
 
@@ -64,19 +68,18 @@
 
             $scope.formPrefix = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr'];
 
-            $scope.getLetter = function () {
+            $scope.getLetterHTML = function () {
 
-                let letter = '';
-
-                letter += 'Dear ';
-                if ($scope.prefix != '') {
-                    letter += $scope.prefix + ' ';
-                }
-                letter += $scope.firstName + ' ' + $scope.lastName;
-                letter += '<br><br>';
-                letter += 'Sincerly yours';
+                let letter = 'Dear ' + ($scope.prefix != '' ? $scope.prefix.trim() + ' ' : '') + $scope.firstName + ' ' + $scope.lastName + '<br><br>Sincerly yours';
 
                 return $sce.trustAsHtml(letter);
+            }
+
+            $scope.getLetter = function () {
+
+                let letter = 'Dear ' + ($scope.prefix != '' ? $scope.prefix.trim() + ' ' : '') + $scope.firstName + ' ' + $scope.lastName + "\n\nSincerly yours";
+
+                return letter;
             }
         });
     </script>
