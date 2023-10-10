@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lab 2</title>
+
+    <!--AngularJS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        .goods th,td {
+            border: 1px solid #ccc;
+            padding: 2px 5px;
+        }
+        .goods th {
+            font-weight: bold;
+        }
+        .goods td:first-child {
+            font-weight: bold;
+        }
+        .goods tr:last-child td:first-child {
+            font-weight: normal;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div ng-app="goodsApp" style="padding: 50px;">
+
+        <div ng-controller="goodsController" class="goods">
+
+            <span>Товары</span>
+            <table border="1" cellspacing="2">
+                <tr>
+                    <th>Название</th>
+                    <th>Цена</th>
+                    <th>Кол-во</th>
+                    <th>Стоимость</th>
+                </tr>
+                <tr ng-repeat="item in goodsItems">
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{getGoodsNormalPrice(item.price * item.quantity)}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Всего: </td>
+                    <td>{{getAllGoodsPrice()}}</td>
+                </tr>
+            </table>
+
+            <br>
+            Element: <copyright></copyright>
+            <br>
+            Attribute: <span data-copyright></span>
+
+        </div>
+
+    </div>
+    <script>
+    angular.module('goodsApp', []).
+        controller('goodsController', function ($scope) {
+
+            $scope.goodsItems = [
+                { 'name': 'Phone', 'price': 890.45, 'quantity': 50 },
+                { 'name': 'Glass', 'price': 460.1, 'quantity': 12 },
+                { 'name': 'Lamp', 'price': 1250.00, 'quantity': 3 },
+            ];
+
+            $scope.getAllGoodsPrice = function () {
+
+                let allGoodPriceSum = 0;
+
+                for (var i = 0; i < $scope.goodsItems.length; i++)
+                    allGoodPriceSum += $scope.goodsItems[i].price * $scope.goodsItems[i].quantity;
+
+                return allGoodPriceSum.toFixed(2);
+            };
+
+            $scope.getGoodsNormalPrice = function (price) {
+
+                return price.toFixed(2);
+            };
+        });
+
+    angular.module('goodsApp').
+        directive('copyright', function () {
+
+            return {
+                restrict: 'EA',
+                template: 'Copyright ' + (new Date()).getFullYear()
+            };
+        });
+    </script>
+</body>
+</html>
