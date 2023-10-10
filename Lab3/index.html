@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lab 3</title>
+
+    <!--AngularJS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        input.ng-invalid {
+            outline: 2px solid red;
+        }
+        input.ng-untouched {
+            outline: none;
+        }
+        input.ng-valid {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div ng-app="formApp" style="padding: 50px;">
+
+        <div ng-controller="formController">
+
+            <form name="personForm">
+
+                Prefix:
+                <select size="1" ng-model="prefix">
+                    <option ng-repeat="p in formPrefix">
+                        {{p}}
+                    </option>
+                </select>
+
+                Name: <input type="text" required ng-model="firstName" name="inputFirstName"><span ng-hide="personForm.inputFirstName.$valid">*</span>
+                Last Name: <input type="text" required ng-model="lastName" name="inputLastName"><span ng-hide="personForm.inputLastName.$valid">*</span>
+
+                <br><br>
+
+                prefix: {{prefix}}<br>
+                firstName: {{firstName}}<br>
+                lastName: {{lastName}}
+
+                <br><br>
+
+                <div ng-show="personForm.inputFirstName.$valid && personForm.inputLastName.$valid" ng-bind-html="getLetter()"></div>
+
+            </form>
+
+        </div>
+
+    </div>
+    <script>
+    angular.module('formApp', []).
+        controller('formController', function ($scope, $sce) {
+
+            $scope.prefix = '';
+            $scope.firstName = '';
+            $scope.lastName = '';
+
+            $scope.formPrefix = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr'];
+
+            $scope.getLetter = function () {
+
+                let letter = '';
+
+                letter += 'Dear ';
+                if ($scope.prefix != '') {
+                    letter += $scope.prefix + ' ';
+                }
+                letter += $scope.firstName + ' ' + $scope.lastName;
+                letter += '<br><br>';
+                letter += 'Sincerly yours';
+
+                return $sce.trustAsHtml(letter);
+            }
+        });
+    </script>
+</body>
+</html>
