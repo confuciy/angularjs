@@ -33,7 +33,7 @@
 
                 <br><br>
                 
-                <div ng-show="ageForm.inputPersonDate.$valid" ng-bind="getAge()"></div>
+                <div ng-show="ageForm.inputPersonDate.$valid" ng-bind="getPersonAge()"></div>
 
             </form>
 
@@ -44,16 +44,22 @@
     angular.module('ageApp', []).
         controller('ageController', function ($scope) {
 
-            let d = new Date();
+            let date_current = new Date();
 
-            $scope.minDate = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+            $scope.minDate = date_current.getFullYear() + '-' + String(date_current.getMonth() + 1).padStart(2, '0') + '-' + String(date_current.getDate()).padStart(2, '0');
             $scope.personDate = '';
 
-            $scope.getAge = function () {
+            $scope.getPersonAge = function () {
 
-                let dt = new Date($scope.personDate);
+                let date_person = new Date($scope.personDate);
 
-                return 'Год рождения: ' + dt.getFullYear();
+                let age = date_current.getFullYear() - date_person.getFullYear();
+                let month = date_current.getMonth() - date_person.getMonth();
+                if (month < 0 || (month === 0 && date_current.getDate() < date_person.getDate())) {
+                    age--;
+                }
+
+                return 'Age: ' + age;
             }
         });
     </script>
