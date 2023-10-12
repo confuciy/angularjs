@@ -1,0 +1,46 @@
+﻿<style>
+    .persons {
+        padding-top: 20px;
+    }
+    .persons th {
+        cursor: pointer;
+    }
+
+    .persons th, td {
+        border: 1px solid #ccc;
+        padding: 2px 5px;
+    }
+
+    .persons th {
+        font-weight: bold;
+    }
+
+    .persons td:first-child {
+        font-weight: bold;
+    }
+</style>
+
+<div ng-controller="personsController" class="persons">
+
+    <span style="font-size: 20px; font-weight: bold;">Персоны</span>
+    <br><br>
+
+    <span>Поиск</span> <input type="text" name="inputPersonsName" ng-model="personsNameSearch">
+    <br><br>
+
+    <table border="1" cellspacing="2">
+        <tr>
+            <th>#</th>
+            <th ng-click="orderBy('lastName')">Фамилия &uarr;&darr;</th>
+            <th ng-click="orderBy('firstName')">Имя &uarr;&darr;</th>
+            <th ng-click="orderBy('middleName')">Отчество &uarr;&darr;</th>
+        </tr>
+        <tr ng-repeat="item in persons | orderBy : OrderName : OrderBy | filter : personsNameSearch">
+            <td>{{$index + 1}}</td>
+            <td><a href="#!/persons/{{item.id}}">{{item.lastName}}</a></td>
+            <td>{{item.firstName}}</td>
+            <td>{{item.middleName}}</td>
+        </tr>
+    </table>
+
+</div>

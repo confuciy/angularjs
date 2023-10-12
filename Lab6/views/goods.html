@@ -1,0 +1,55 @@
+﻿<style>
+    .goods {
+        padding-top: 20px;
+    }
+    .goods th {
+        cursor: pointer;
+    }
+
+    .goods th, td {
+        border: 1px solid #ccc;
+        padding: 2px 5px;
+    }
+
+    .goods th {
+        font-weight: bold;
+    }
+
+    .goods td:first-child {
+        font-weight: bold;
+    }
+
+    .goods tr:last-child td:first-child {
+        font-weight: normal;
+        text-align: right;
+    }
+</style>
+
+<div ng-controller="goodsController" class="goods" ng-init="setAllGoodPriceSum()">
+
+    <span style="font-size: 20px; font-weight: bold;">Товары</span>
+    <br><br>
+
+    <span>Поиск</span> <input type="text" name="inputGoodsName" ng-model="goodsNameSearch" ng-change="setAllGoodPriceSum()">
+    <br><br>
+
+    <table border="1" cellspacing="2">
+        <tr>
+            <th ng-click="orderBy('name')">Название &uarr;&darr;</th>
+            <th ng-click="orderBy('price')">Цена &uarr;&darr;</th>
+            <th ng-click="orderBy('quantity')">Кол-во &uarr;&darr;</th>
+            <th>Стоимость</th>
+        </tr>
+        <tr ng-repeat="item in goodsItems | orderBy : OrderName : OrderBy | filter : {name : goodsNameSearch}">
+            <td>{{item.name}}</td>
+            <td>{{item.price | currency }}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{getGoodsNormalPrice(item.price * item.quantity) | currency}}</td>
+        </tr>
+        <tr>
+            <td colspan="3">Всего: </td>
+            <td>{{allGoodPriceSum | currency }}</td>
+        </tr>
+    </table>
+
+</div>
