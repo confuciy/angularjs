@@ -29,9 +29,11 @@
         <br><br>
 
         <nav ng-controller="menuController">
+
             <a href="#!/" ng-class="{ active: isActive('/') }">Главная страница</a>
             <a href="#!/persons" ng-class="{ active: isActive('/persons') }">Персоны</a>
             <a href="#!/goods" ng-class="{ active: isActive('/goods') }">Товары</a>
+                
         </nav>
 
         <div ng-view></div>
