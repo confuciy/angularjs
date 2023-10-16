@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>eShop</title>
+
+    <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!--AngularJS-->
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.js"></script>
+    <script src="Scripts/i18n/angular-locale_ru-ru.js"></script>
+    <script src="eShop/controllers/main.js"></script>
+    <script src="eShop/controllers/service.js"></script>
+    <script src="eShop/controllers/goods.js"></script>
+    <script src="eShop/controllers/basket.js"></script>
+    <script src="eShop/controllers/orders.js"></script>
+
+    <!--Styles-->
+    <link href="eShop/css/main.css" rel="stylesheet">
+    <link href="eShop/css/goods.css" rel="stylesheet">
+    <link href="eShop/css/basket.css" rel="stylesheet">
+    <link href="eShop/css/orders.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div ng-app="shopApp" style="padding: 50px;">
+
+        <span style="font-size: 24px; font-weight: bold;">eShop</span>
+        <br><br>
+        <div ng-controller="menuController">
+
+            <nav>
+
+                <a href="#!/" ng-class="{ active: isActive('/') }">Главная страница</a>
+                <a href="#!/goods" ng-class="{ active: isActive('/goods') }">Товары</a>
+                <a href="#!/basket" ng-class="{ active: isActive('/basket') }">Корзина <span ng-if="basketCount > 0">[{{basketCount}}]</span></a>
+                <a href="#!/orders" ng-class="{ active: isActive('/orders') }">Заказы <span ng-if="ordersCount > 0">[{{ordersCount}}]</span></a>
+
+            </nav>
+
+            <div ng-view></div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

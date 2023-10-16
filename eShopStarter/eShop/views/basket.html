@@ -1,0 +1,55 @@
+﻿<div ng-controller="basketController" class="basket" ng-init="setBasketAllPriceSum()">
+
+    <span style="font-size: 20px; font-weight: bold;">Корзина</span>
+    <br><br>
+
+    <table border="1" cellspacing="2">
+        <tr>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Кол-во</th>
+            <th>Стоимость</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr ng-repeat="item in basket" ng-show="item.quantity > 0">
+            <td>{{item.title}}</td>
+            <td>{{item.price | currency}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{getBasketNormalPrice(item.price * item.quantity) | currency}}</td>
+            <td><input type="number" ng-init="basketQuantity[item.id]=item.quantity" ng-model="basketQuantity[item.id]" size="5" min="0" ng-change="deleteBasketById(item.id, basketQuantity[item.id])"> <button ng-click="deleteBasketAllById(item.id)">удалить все</button></td>
+        </tr>
+        <tr>
+            <td colspan="3">Всего: </td>
+            <td>{{basketAllPriceSum | currency }}</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+    <br><br>
+
+    <div ng-show="orderWasCreated == 1" ng-bind-html="orderWasCreatedInfo"></div>
+
+    <div ng-show="orderForm == 0 && orderForm != 2"><button ng-click="orderForm = 1">Cформировать заказ</button></div>
+    <div ng-show="orderForm == 1 && orderForm != 2">
+
+        <br>
+
+        <div class="delemiter"></div>
+
+        ФИО покупателя<br>
+        <input type="text" name="inputOrderCustomer" ng-model="orderCustomer" value="{{orderCustomer}}" max="50" size="40" required><span>*</span>
+
+        <br><br>
+
+        Комментарий<br>
+        <textarea maxlength="150" rows="5" cols="50" ng-model="orderComment">{{orderComment}}</textarea>
+
+        <br><br>
+
+        <div ng-show="orderError != ''" ng-bind-html="orderError" style="margin-bottom:20px; color: #e54444; font-weight: bold;"></div>
+
+        <button ng-click="createOrder()" name="buttonOrderCustomer">Cформировать</button>
+
+    </div>
+    
+</div>

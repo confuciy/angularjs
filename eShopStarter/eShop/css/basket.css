@@ -1,0 +1,20 @@
+﻿.basket {
+    padding-top: 20px;
+}
+
+.basket th, td {
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+}
+
+.basket th {
+    font-weight: bold;
+}
+
+.basket tr:last-child td:first-child {
+    text-align: right;
+}
+
+.basket tr:last-child td:nth-child(2) {
+    font-weight: bold;
+}

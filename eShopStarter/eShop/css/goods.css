@@ -1,0 +1,28 @@
+﻿.goods {
+    padding-top: 20px;
+}
+
+.goods th {
+    cursor: pointer;
+}
+
+.goods th:last-child {
+    cursor: auto;
+}
+
+.goods th, td {
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+}
+
+.goods th {
+    font-weight: bold;
+}
+
+.goods td:first-child {
+    font-weight: bold;
+}
+
+.goods td:last-child span {
+    cursor: pointer;
+}

@@ -1,0 +1,26 @@
+﻿<div ng-controller="ordersController" class="orders">
+
+    <span style="font-size: 20px; font-weight: bold;">Заказы</span>
+    <br><br>
+
+    <span>Поиск</span> <input type="text" ng-model="ordersNameSearch">
+    <br><br>
+
+    <table border="1" cellspacing="2">
+        <tr>
+            <th>Клиент</th>
+            <th>Комментарий</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr ng-repeat="item in orders | filter : {customer : ordersNameSearch} | limitTo : pageSize : currentPage * pageSize" ng-model="ordersShow[item.Id]" ng-show="ordersShow[item.Id] != 0">
+            <td>{{item.customer}}</td>
+            <td>{{item.comment}}</td>
+            <td><button ng-click="deleteOrder(item.Id)">удалить</button></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <button ng-repeat="i in getNumberAsArray(numberOfPages(orders | filter : {customer : ordersNameSearch})) track by $index" ng-click="setCurrentPage($index)">{{$index+1}}</button>
+
+</div>

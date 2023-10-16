@@ -1,0 +1,14 @@
+﻿.main {
+    padding-top: 20px;
+}
+
+nav a.active {
+    font-weight: bold;
+}
+
+.delemiter {
+    width: 35%;
+    height: 1px;
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 40px;
+}
